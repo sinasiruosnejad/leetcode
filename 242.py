@@ -23,3 +23,4 @@ if len(S_A)>0 or len(S_B)>0:
     print('false')
 else:
     print('true')
+
