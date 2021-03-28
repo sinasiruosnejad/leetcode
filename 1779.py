@@ -24,9 +24,12 @@ t=input('please enter the list of points: ')
 temp=''
 other_temp=[]
 for i in range(1,len(t)-1):
-    if t[i]!=',':
+    if t[i]==',' and t[i+1]=='[':
+        temp=''
+    elif t[i]!=']':
         temp+=t[i]
     else:
+        temp+=t[i]
         other_temp.append(temp)
         temp=''
 
@@ -34,6 +37,7 @@ points=[]
 
 for i in range(len(other_temp)):
     temp=string_to_list(other_temp[i])
+    points.append(temp)
 
 
 qualified=[]
@@ -52,21 +56,25 @@ for i in range(len(distance)):
     if i==0:
         temp=distance[i]
         temp_i=i
-    elif temp<distance[i]:
+        qualify.append(temp_i)
+    elif temp>distance[i]:
         temp=distance[i]
         temp_i=i
-        qualify.pop(0)
         qualify.append(temp_i)
+        qualify.pop(0)
     elif temp==distance[i]:
         qualify.append(i)
 
-for i in range(len(qualify)):
-    finall_qualification.append(qualified[i][1])
+for i in range(len(qualified)):
+    for j in range(len(qualify)):
+        if qualify[j]==i:
+            finall_qualification.append(qualified[i][1])
 
+result=-1
 for i in range(len(finall_qualification)):
     if i==0:
         result=finall_qualification[i]
-    elif temp>finall_qualification[i]:
+    elif result>finall_qualification[i]:
         result=finall_qualification[i]
 
 print(result)
