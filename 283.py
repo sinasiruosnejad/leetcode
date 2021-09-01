@@ -1,0 +1,35 @@
+def string_to_list():
+    x=input()
+    result=[]
+    i=1
+    while x[i]!=']':
+        if x[i]!=',':
+            j=i
+            temp=''
+            while x[j]!=',':
+                if x[j]==']':
+                    break
+                temp+=x[j]
+                j+=1
+                i=j
+            result.append(int(temp))
+        else:
+            i+=1
+    return result
+
+nums=string_to_list()
+i=0
+while True:
+    status=True
+    if nums[i]==0:
+        nums.append(nums[i])
+        nums.pop(i)
+    for j in range(i+1,len(nums)):
+        if nums[j]!=0:
+            status=False
+            break
+    if status==True:
+        print(nums)
+        exit()
+    if nums[i]!=0:
+        i+=1
